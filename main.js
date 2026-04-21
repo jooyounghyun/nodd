@@ -10,10 +10,10 @@ const sharedStyles = `
     opacity: 0;
   }
   :host(.visible) {
-    animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
   * {
@@ -21,12 +21,12 @@ const sharedStyles = `
     font-family: 'Pretendard', sans-serif;
   }
   .glass {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 32px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
@@ -34,19 +34,19 @@ const sharedStyles = `
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.08) 0%, transparent 70%);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s;
     pointer-events: none;
   }
   .glass:hover::before {
     opacity: 1;
   }
   .glass:hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(108, 99, 255, 0.1);
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px oklch(65% 0.3 300 / 0.15);
   }
 `;
 
@@ -88,46 +88,47 @@ class VybeHeader extends HTMLElement {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 20px 40px;
+          padding: 24px 40px;
           position: sticky;
           top: 0;
           z-index: 100;
-          background: rgba(15, 15, 17, 0.7);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
+          background: rgba(12, 12, 15, 0.6);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         h1 {
-          font-size: 26px;
+          font-size: 28px;
           font-weight: 800;
           margin: 0;
-          background: linear-gradient(45deg, oklch(65% 0.25 280), oklch(75% 0.15 190));
+          background: linear-gradient(135deg, oklch(65% 0.3 300), oklch(70% 0.25 30));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           cursor: pointer;
-          letter-spacing: -0.04em;
+          letter-spacing: -0.06em;
         }
         nav {
           display: flex;
-          gap: 32px;
+          gap: 40px;
         }
         nav a {
-          color: oklch(80% 0.02 260);
+          color: oklch(80% 0.02 285);
           text-decoration: none;
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 600;
-          transition: 0.3s;
+          transition: 0.4s;
           position: relative;
         }
         nav a::after {
           content: "";
           position: absolute;
           bottom: -4px;
-          left: 0;
+          left: 50%;
           width: 0;
           height: 2px;
-          background: oklch(75% 0.15 190);
-          transition: 0.3s;
+          background: oklch(65% 0.3 300);
+          transition: 0.4s;
+          transform: translateX(-50%);
         }
         nav a:hover {
           color: white;
@@ -136,7 +137,7 @@ class VybeHeader extends HTMLElement {
           width: 100%;
         }
         @media (max-width: 768px) {
-          header { padding: 15px 20px; }
+          header { padding: 18px 24px; }
           nav { display: none; }
         }
       </style>
@@ -169,26 +170,26 @@ class VybeSection extends HTMLElement {
         :host {
           display: block;
           opacity: 0;
-          transform: translateY(30px);
-          transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+          transform: translateY(40px);
+          transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         :host(.visible) {
           opacity: 1;
           transform: translateY(0);
         }
         section {
-          padding: 60px 0;
+          padding: 80px 0;
         }
         h3 {
-          font-size: 32px;
+          font-size: 36px;
           font-weight: 800;
-          margin-bottom: 40px;
+          margin-bottom: 48px;
           color: white;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.04em;
         }
         @media (max-width: 768px) {
-          section { padding: 40px 0; }
-          h3 { font-size: 24px; }
+          section { padding: 60px 0; }
+          h3 { font-size: 28px; }
         }
       </style>
       <section>
@@ -215,27 +216,27 @@ class StyleCard extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         ${sharedStyles}
-        :host { opacity: 1; } /* Managed by parent section */
+        :host { opacity: 1; }
         .card {
-          padding: 40px;
+          padding: 48px 40px;
           cursor: pointer;
           height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          min-height: 180px;
+          min-height: 220px;
         }
         h4 {
-          font-size: 24px;
-          margin: 0 0 12px 0;
+          font-size: 26px;
+          margin: 0 0 14px 0;
           color: white;
-          font-weight: 700;
+          font-weight: 800;
         }
         p {
           font-size: 16px;
-          color: oklch(80% 0.02 260);
+          color: oklch(75% 0.02 285);
           margin: 0;
-          opacity: 0.8;
+          line-height: 1.4;
         }
       </style>
       <div class="glass card">
@@ -266,37 +267,37 @@ class CreatorCard extends HTMLElement {
         :host { opacity: 1; }
         .card {
           padding: 24px;
-          min-width: 280px;
+          min-width: 300px;
           cursor: pointer;
         }
-        .image-placeholder {
+        .image-container {
           width: 100%;
           aspect-ratio: 1;
-          background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-          border-radius: 20px;
-          margin-bottom: 20px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+          border-radius: 24px;
+          margin-bottom: 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 40px;
+          font-size: 48px;
           position: relative;
           overflow: hidden;
         }
         h4 {
           font-size: 22px;
-          margin: 0 0 8px 0;
+          margin: 0 0 10px 0;
           color: white;
-          font-weight: 700;
+          font-weight: 800;
         }
         p {
-          font-size: 14px;
-          color: oklch(80% 0.02 260);
+          font-size: 15px;
+          color: oklch(75% 0.02 285);
           margin: 0;
           font-weight: 500;
         }
       </style>
       <div class="glass card">
-        <div class="image-placeholder">
+        <div class="image-container">
           ${img ? `<img src="${img}" style="width:100%; height:100%; object-fit:cover;">` : '📸'}
         </div>
         <h4>${name}</h4>
@@ -321,22 +322,23 @@ class VybeButton extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         button {
-          padding: 18px 40px;
+          padding: 20px 48px;
           border: none;
           border-radius: 100px;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 18px;
           cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-          background: ${variant === 'primary' ? 'linear-gradient(45deg, oklch(65% 0.25 280), oklch(75% 0.15 190))' : 'rgba(255, 255, 255, 0.05)'};
+          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          background: ${variant === 'primary' ? 'linear-gradient(135deg, oklch(65% 0.3 300), oklch(70% 0.25 30))' : 'rgba(255, 255, 255, 0.05)'};
           color: white;
-          box-shadow: ${variant === 'primary' ? '0 0 20px oklch(75% 0.15 190 / 0.4)' : 'none'};
+          box-shadow: ${variant === 'primary' ? '0 0 30px oklch(65% 0.3 300 / 0.4)' : 'none'};
           position: relative;
           overflow: hidden;
+          letter-spacing: -0.02em;
         }
         button:hover {
-          transform: translateY(-4px);
-          box-shadow: ${variant === 'primary' ? '0 15px 30px oklch(75% 0.15 190 / 0.5)' : 'rgba(255, 255, 255, 0.1)'};
+          transform: translateY(-6px) scale(1.03);
+          box-shadow: ${variant === 'primary' ? '0 20px 40px oklch(65% 0.3 300 / 0.5)' : 'rgba(255, 255, 255, 0.1)'};
           filter: brightness(1.1);
         }
         button:active {
@@ -355,4 +357,4 @@ customElements.define('style-card', StyleCard);
 customElements.define('creator-card', CreatorCard);
 customElements.define('vybe-button', VybeButton);
 
-console.log('VYBE Platform Initialized');
+console.log('VYBE Platform - Midnight Aurora Initialized');
