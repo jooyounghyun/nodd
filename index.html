@@ -1,14 +1,60 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VYBE - Creator Platform</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+  <vybe-header></vybe-header>
+
+  <main class="container">
+    
+    <section class="hero" style="text-align: center; padding: 120px 20px;">
+      <h2 style="font-size: clamp(32px, 8vw, 64px); line-height: 1.1; margin-bottom: 24px;">
+        트렌디한 콘텐츠를<br/>
+        <span class="gradient-text">가장 빠르게</span> 만들어보세요
+      </h2>
+      <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 40px;">
+        검증된 Z세대 크리에이터와 연결됩니다
+      </p>
+
+      <vybe-button text="의뢰 시작하기" onclick="alert('의뢰 기능 준비중')"></vybe-button>
+    </section>
+
+    <vybe-section title="스타일 선택">
+      <div id="style-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <style-card title="감성 브이로그" description="감각적인 분위기 영상"></style-card>
+        <style-card title="밈 스타일" description="재미있는 바이럴 영상"></style-card>
+        <style-card title="정보형 쇼츠" description="빠르게 전달하는 콘텐츠"></style-card>
+        <style-card title="광고형 영상" description="전환 중심 콘텐츠"></style-card>
+      </div>
+    </vybe-section>
+
+    <vybe-section title="추천 크리에이터">
+      <div class="creator-list" style="display: flex; gap: 24px; overflow-x: auto; padding-bottom: 24px; scrollbar-width: none;">
+        <creator-card name="Creator A" tag="조회수 잘 뽑는 편집"></creator-card>
+        <creator-card name="Creator B" tag="감성 영상 전문"></creator-card>
+        <creator-card name="Creator C" tag="밈 콘텐츠 강점"></creator-card>
+        <creator-card name="Creator D" tag="숏폼 광고 전문"></creator-card>
+      </div>
+    </vybe-section>
+
+  </main>
+
+  <footer style="padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-secondary); font-size: 14px;">
+    © 2026 VYBE. All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js" type="module"></script>
 </body>
 </html>
