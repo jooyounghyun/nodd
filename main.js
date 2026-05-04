@@ -1,6 +1,6 @@
 /**
  * VYBE - High Performance Creator Platform
- * Cal AI Inspired Redesign
+ * Cal AI Inspired Redesign (Light Mode)
  */
 
 // Shared Styles Helper
@@ -10,18 +10,18 @@ const sharedStyles = `
     font-family: 'Pretendard', sans-serif;
   }
   .glass {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.02);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 32px;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
   .glass:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     transform: translateY(-8px);
   }
 `;
@@ -57,15 +57,15 @@ class VybeHeader extends HTMLElement {
           left: 0;
           right: 0;
           z-index: 1000;
-          background: rgba(0, 0, 0, 0.5);
+          background: rgba(255, 255, 255, 0.7);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         .logo {
           font-size: 24px;
           font-weight: 800;
-          color: white;
+          color: #000;
           text-decoration: none;
           letter-spacing: -0.05em;
         }
@@ -74,18 +74,18 @@ class VybeHeader extends HTMLElement {
           gap: 32px;
         }
         nav a {
-          color: #A1A1AA;
+          color: #71717A;
           text-decoration: none;
           font-size: 14px;
           font-weight: 600;
           transition: 0.3s;
         }
         nav a:hover {
-          color: white;
+          color: #000;
         }
         .cta {
-          background: white;
-          color: black;
+          background: #000;
+          color: #fff;
           padding: 10px 20px;
           border-radius: 100px;
           font-weight: 700;
@@ -95,7 +95,7 @@ class VybeHeader extends HTMLElement {
         }
         .cta:hover {
           transform: scale(1.05);
-          box-shadow: 0 0 20px rgba(255,255,255,0.2);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         @media (max-width: 768px) {
           header { padding: 15px 24px; }
@@ -143,11 +143,11 @@ class VybeSection extends HTMLElement {
           font-weight: 800;
           margin-bottom: 16px;
           letter-spacing: -0.04em;
-          color: white;
+          color: #09090B;
         }
         p {
           font-size: 18px;
-          color: #A1A1AA;
+          color: #71717A;
           max-width: 600px;
           margin: 0 auto;
         }
@@ -191,21 +191,21 @@ class StyleCard extends HTMLElement {
         h4 {
           font-size: 24px;
           margin: 0 0 12px 0;
-          color: white;
+          color: #09090B;
           font-weight: 800;
           letter-spacing: -0.03em;
         }
         p {
           font-size: 15px;
-          color: #A1A1AA;
+          color: #71717A;
           margin: 0;
           line-height: 1.5;
         }
         .badge {
           display: inline-block;
           padding: 4px 12px;
-          background: oklch(85% 0.2 145 / 0.1);
-          color: oklch(85% 0.2 145);
+          background: oklch(75% 0.18 145 / 0.1);
+          color: oklch(75% 0.18 145);
           border-radius: 100px;
           font-size: 12px;
           font-weight: 700;
@@ -247,7 +247,7 @@ class CreatorCard extends HTMLElement {
         .img-placeholder {
           width: 100%;
           aspect-ratio: 1;
-          background: linear-gradient(135deg, #111, #000);
+          background: linear-gradient(135deg, #F4F4F5, #E4E4E7);
           border-radius: 20px;
           margin-bottom: 20px;
           display: flex;
@@ -257,11 +257,12 @@ class CreatorCard extends HTMLElement {
         }
         h4 {
           font-size: 20px;
-          color: white;
+          color: #09090B;
           margin-bottom: 4px;
+          font-weight: 700;
         }
         p {
-          color: #A1A1AA;
+          color: #71717A;
           font-size: 14px;
         }
       </style>
@@ -295,13 +296,13 @@ class VybeButton extends HTMLElement {
           font-size: 18px;
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          background: oklch(85% 0.2 145);
-          color: black;
+          background: #000;
+          color: #fff;
           letter-spacing: -0.02em;
         }
         button:hover {
           transform: scale(1.05);
-          box-shadow: 0 0 30px oklch(85% 0.2 145 / 0.4);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         button:active {
           transform: scale(0.95);
@@ -319,4 +320,4 @@ customElements.define('style-card', StyleCard);
 customElements.define('creator-card', CreatorCard);
 customElements.define('vybe-button', VybeButton);
 
-console.log('VYBE - High Performance Initialized');
+console.log('VYBE - Light Mode Initialized');

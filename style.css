@@ -1,13 +1,13 @@
 :root {
-  /* Colors - Cal AI Inspired (High Contrast / Neon Accent) */
-  --bg-primary: #000000;
-  --bg-secondary: #0A0A0A;
-  --accent-lime: oklch(85% 0.2 145);
-  --accent-lime-muted: oklch(85% 0.2 145 / 0.1);
-  --text-primary: #FFFFFF;
-  --text-secondary: #A1A1AA;
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(255, 255, 255, 0.03);
+  /* Colors - Cal AI Inspired (Light Mode / High Contrast) */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F8F8;
+  --accent-lime: oklch(75% 0.18 145); /* Slightly darker for contrast on white */
+  --accent-lime-muted: oklch(75% 0.18 145 / 0.1);
+  --text-primary: #09090B;
+  --text-secondary: #71717A;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.4);
   
   /* System */
   --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,13 +40,13 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000 100%);
+  background: radial-gradient(circle at 50% 50%, #fefefe 0%, #f0f0f0 100%);
 }
 
 .blob {
   position: absolute;
   filter: blur(120px);
-  opacity: 0.12;
+  opacity: 0.15; /* Slightly higher opacity for light mode */
   border-radius: 50%;
   z-index: -1;
 }
@@ -63,7 +63,7 @@ body {
 .blob-2 {
   width: 600px;
   height: 600px;
-  background: #3b82f6; /* Deep Blue / Indigo */
+  background: #bfdbfe; /* Soft Blue */
   bottom: -150px;
   left: -150px;
   animation: float 30s infinite alternate-reverse;
@@ -79,10 +79,11 @@ h1, h2, h3 {
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1.1;
+  color: var(--text-primary);
 }
 
 .gradient-text {
-  background: linear-gradient(to bottom, #fff 40%, var(--accent-lime));
+  background: linear-gradient(to bottom, var(--text-primary) 30%, var(--accent-lime));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -148,7 +149,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  opacity: 0.015;
+  opacity: 0.03; /* Slightly visible on white */
   pointer-events: none;
   z-index: 1000;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
