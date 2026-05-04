@@ -5,11 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VYBE - High Performance Creator Platform</title>
 
-  <!-- Typography -->
+  <!-- Typography: Pretendard -->
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
   
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      /* Colors - Cal AI Inspired (Light Mode / High Contrast) */
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F8F8;
+      --accent-lime: oklch(75% 0.18 145);
+      --accent-lime-muted: oklch(75% 0.18 145 / 0.1);
+      --text-primary: #09090B;
+      --text-secondary: #71717A;
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.4);
+      
+      /* System */
+      --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --container-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Background Effects */
+    .aurora-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #fefefe 0%, #f0f0f0 100%);
+    }
+
+    .blob {
+      position: absolute;
+      filter: blur(120px);
+      opacity: 0.15;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .blob-1 {
+      width: 700px;
+      height: 700px;
+      background: var(--accent-lime);
+      top: -250px;
+      right: -150px;
+      animation: float 25s infinite alternate;
+    }
+
+    .blob-2 {
+      width: 600px;
+      height: 600px;
+      background: #bfdbfe;
+      bottom: -150px;
+      left: -150px;
+      animation: float 30s infinite alternate-reverse;
+    }
+
+    @keyframes float {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(60px, 120px) scale(1.1); }
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to bottom, var(--text-primary) 30%, var(--accent-lime));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtext {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      font-weight: 500;
+      max-width: 600px;
+    }
+
+    /* Layout */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(160px, auto);
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glass Utility */
+    .glass-base {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+    }
+
+    /* Grainy Texture */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+  </style>
 </head>
 
 <body>
@@ -19,10 +175,12 @@
     <div class="blob blob-2"></div>
   </div>
 
+  <!-- Header -->
   <vybe-header></vybe-header>
 
   <main class="container">
     
+    <!-- Hero Section -->
     <section class="hero" style="text-align: center; padding: 200px 24px 120px;">
       <div class="reveal">
         <h1 style="font-size: clamp(48px, 10vw, 92px); margin-bottom: 24px;">
@@ -37,6 +195,7 @@
       </div>
     </section>
 
+    <!-- Bento Grid Section -->
     <vybe-section title="What VYBE includes" subtitle="우리는 단순한 영상을 넘어 브랜드의 성장을 설계합니다.">
       <div class="bento-grid">
         <style-card span="8" title="감성 브이로그" description="시네마틱한 무드로 브랜드의 철학을 자연스럽게 녹여냅니다."></style-card>
@@ -46,6 +205,7 @@
       </div>
     </vybe-section>
 
+    <!-- Creators Section -->
     <vybe-section title="Featured Creators" subtitle="최고의 성과를 낸 상위 1% 크리에이터를 만나보세요.">
       <div class="creator-list" style="display: flex; gap: 24px; overflow-x: auto; padding: 20px 0 60px; scrollbar-width: none;">
         <creator-card name="Creator A" tag="누적 조회수 500만+"></creator-card>
@@ -57,7 +217,8 @@
 
   </main>
 
-  <footer style="padding: 100px 24px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+  <!-- Footer -->
+  <footer style="padding: 100px 24px; text-align: center; border-top: 1px solid rgba(0, 0, 0, 0.05);">
     <div class="container">
       <h2 style="font-size: 32px; margin-bottom: 40px;">Ready to ride the VYBE?</h2>
       <vybe-button text="문의 남기기"></vybe-button>
@@ -67,13 +228,322 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="main.js" type="module"></script>
-  <script>
-    // Simple script to trigger hero reveal immediately
+  <!-- Scripts: Web Components -->
+  <script type="module">
+    const sharedStyles = `
+      * {
+        box-sizing: border-box;
+        font-family: 'Pretendard', sans-serif;
+      }
+      .glass {
+        background: rgba(0, 0, 0, 0.02);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 32px;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .glass:hover {
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+      }
+    `;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    class VybeHeader extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+        this.render();
+      }
+      render() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 20px 48px;
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 1000;
+              background: rgba(255, 255, 255, 0.7);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            .logo {
+              font-size: 24px;
+              font-weight: 800;
+              color: #000;
+              text-decoration: none;
+              letter-spacing: -0.05em;
+            }
+            nav {
+              display: flex;
+              gap: 32px;
+            }
+            nav a {
+              color: #71717A;
+              text-decoration: none;
+              font-size: 14px;
+              font-weight: 600;
+              transition: 0.3s;
+            }
+            nav a:hover {
+              color: #000;
+            }
+            .cta {
+              background: #000;
+              color: #fff;
+              padding: 10px 20px;
+              border-radius: 100px;
+              font-weight: 700;
+              font-size: 14px;
+              text-decoration: none;
+              transition: 0.3s;
+            }
+            .cta:hover {
+              transform: scale(1.05);
+              box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            @media (max-width: 768px) {
+              header { padding: 15px 24px; }
+              nav { display: none; }
+            }
+          </style>
+          <header>
+            <a href="/" class="logo">VYBE</a>
+            <nav>
+              <a href="#">크리에이터</a>
+              <a href="#">성공사례</a>
+              <a href="#">문의하기</a>
+            </nav>
+            <a href="#" class="cta">시작하기</a>
+          </header>
+        `;
+      }
+    }
+
+    class VybeSection extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+        const title = this.getAttribute('title') || '';
+        const subtitle = this.getAttribute('subtitle') || '';
+        this.render(title, subtitle);
+        this.classList.add('reveal');
+        revealObserver.observe(this);
+      }
+      render(title, subtitle) {
+        this.shadowRoot.innerHTML = `
+          <style>
+            section {
+              padding: 100px 0;
+            }
+            .header {
+              text-align: center;
+              margin-bottom: 64px;
+            }
+            h2 {
+              font-size: clamp(32px, 5vw, 56px);
+              font-weight: 800;
+              margin-bottom: 16px;
+              letter-spacing: -0.04em;
+              color: #09090B;
+            }
+            p {
+              font-size: 18px;
+              color: #71717A;
+              max-width: 600px;
+              margin: 0 auto;
+            }
+          </style>
+          <section>
+            <div class="header">
+              ${title ? `<h2>${title}</h2>` : ''}
+              ${subtitle ? `<p>${subtitle}</p>` : ''}
+            </div>
+            <slot></slot>
+          </section>
+        `;
+      }
+    }
+
+    class StyleCard extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+        const title = this.getAttribute('title') || 'Style';
+        const desc = this.getAttribute('description') || 'Description';
+        const span = this.getAttribute('span') || '3';
+        this.style.gridColumn = `span ${span}`;
+        this.render(title, desc);
+      }
+      render(title, desc) {
+        this.shadowRoot.innerHTML = `
+          <style>
+            ${sharedStyles}
+            .card {
+              padding: 40px;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              min-height: 200px;
+            }
+            h4 {
+              font-size: 24px;
+              margin: 0 0 12px 0;
+              color: #09090B;
+              font-weight: 800;
+              letter-spacing: -0.03em;
+            }
+            p {
+              font-size: 15px;
+              color: #71717A;
+              margin: 0;
+              line-height: 1.5;
+            }
+            .badge {
+              display: inline-block;
+              padding: 4px 12px;
+              background: oklch(75% 0.18 145 / 0.1);
+              color: oklch(75% 0.18 145);
+              border-radius: 100px;
+              font-size: 12px;
+              font-weight: 700;
+              margin-bottom: 16px;
+              align-self: flex-start;
+            }
+          </style>
+          <div class="glass card">
+            <div>
+              <div class="badge">TRENDING</div>
+              <h4>${title}</h4>
+              <p>${desc}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    class CreatorCard extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+        const name = this.getAttribute('name') || 'Creator';
+        const tag = this.getAttribute('tag') || 'Tagline';
+        this.render(name, tag);
+      }
+      render(name, tag) {
+        this.shadowRoot.innerHTML = `
+          <style>
+            ${sharedStyles}
+            .card {
+              padding: 24px;
+              min-width: 280px;
+              flex: 0 0 auto;
+            }
+            .img-placeholder {
+              width: 100%;
+              aspect-ratio: 1;
+              background: linear-gradient(135deg, #F4F4F5, #E4E4E7);
+              border-radius: 20px;
+              margin-bottom: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 40px;
+            }
+            h4 {
+              font-size: 20px;
+              color: #09090B;
+              margin-bottom: 4px;
+              font-weight: 700;
+            }
+            p {
+              color: #71717A;
+              font-size: 14px;
+            }
+          </style>
+          <div class="glass card">
+            <div class="img-placeholder">📸</div>
+            <h4>${name}</h4>
+            <p>${tag}</p>
+          </div>
+        `;
+      }
+    }
+
+    class VybeButton extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+        const text = this.getAttribute('text') || 'Button';
+        this.render(text);
+      }
+      render(text) {
+        this.shadowRoot.innerHTML = `
+          <style>
+            button {
+              padding: 18px 40px;
+              border: none;
+              border-radius: 100px;
+              font-weight: 800;
+              font-size: 18px;
+              cursor: pointer;
+              transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+              background: #000;
+              color: #fff;
+              letter-spacing: -0.02em;
+            }
+            button:hover {
+              transform: scale(1.05);
+              box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+            button:active {
+              transform: scale(0.95);
+            }
+          </style>
+          <button>${text}</button>
+        `;
+      }
+    }
+
+    customElements.define('vybe-header', VybeHeader);
+    customElements.define('vybe-section', VybeSection);
+    customElements.define('style-card', StyleCard);
+    customElements.define('creator-card', CreatorCard);
+    customElements.define('vybe-button', VybeButton);
+
+    // Initial Reveal
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        document.querySelector('.hero .reveal').classList.add('active');
+        const heroReveal = document.querySelector('.hero .reveal');
+        if (heroReveal) heroReveal.classList.add('active');
       }, 100);
     });
   </script>
