@@ -1,52 +1,28 @@
 /**
- * VYBE - Modern Creator Platform
- * Core Application Logic & Web Components
+ * VYBE - High Performance Creator Platform
+ * Cal AI Inspired Redesign
  */
 
 // Shared Styles Helper
 const sharedStyles = `
-  :host {
-    display: block;
-    opacity: 0;
-  }
-  :host(.visible) {
-    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   * {
     box-sizing: border-box;
     font-family: 'Pretendard', sans-serif;
   }
   .glass {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 32px;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
-  .glass::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.08) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s;
-    pointer-events: none;
-  }
-  .glass:hover::before {
-    opacity: 1;
-  }
   .glass:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    transform: translateY(-12px) scale(1.01);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px oklch(65% 0.3 300 / 0.15);
+    transform: translateY(-8px);
   }
 `;
 
@@ -54,23 +30,10 @@ const sharedStyles = `
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      entry.target.classList.add('active');
     }
   });
 }, { threshold: 0.1 });
-
-// Helper to attach mouse movement for glow effect
-const attachGlowEffect = (element) => {
-  const card = element.shadowRoot.querySelector('.glass');
-  if (!card) return;
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty('--mouse-x', `${x}%`);
-    card.style.setProperty('--mouse-y', `${y}%`);
-  });
-};
 
 // VybeHeader Component
 class VybeHeader extends HTMLElement {
@@ -88,66 +51,65 @@ class VybeHeader extends HTMLElement {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 24px 40px;
-          position: sticky;
+          padding: 20px 48px;
+          position: fixed;
           top: 0;
-          z-index: 100;
-          background: rgba(12, 12, 15, 0.6);
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        h1 {
-          font-size: 28px;
+        .logo {
+          font-size: 24px;
           font-weight: 800;
-          margin: 0;
-          background: linear-gradient(135deg, oklch(65% 0.3 300), oklch(70% 0.25 30));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          cursor: pointer;
-          letter-spacing: -0.06em;
+          color: white;
+          text-decoration: none;
+          letter-spacing: -0.05em;
         }
         nav {
           display: flex;
-          gap: 40px;
+          gap: 32px;
         }
         nav a {
-          color: oklch(80% 0.02 285);
+          color: #A1A1AA;
           text-decoration: none;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
-          transition: 0.4s;
-          position: relative;
-        }
-        nav a::after {
-          content: "";
-          position: absolute;
-          bottom: -4px;
-          left: 50%;
-          width: 0;
-          height: 2px;
-          background: oklch(65% 0.3 300);
-          transition: 0.4s;
-          transform: translateX(-50%);
+          transition: 0.3s;
         }
         nav a:hover {
           color: white;
         }
-        nav a:hover::after {
-          width: 100%;
+        .cta {
+          background: white;
+          color: black;
+          padding: 10px 20px;
+          border-radius: 100px;
+          font-weight: 700;
+          font-size: 14px;
+          text-decoration: none;
+          transition: 0.3s;
+        }
+        .cta:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
         @media (max-width: 768px) {
-          header { padding: 18px 24px; }
+          header { padding: 15px 24px; }
           nav { display: none; }
         }
       </style>
       <header>
-        <h1>VYBE</h1>
+        <a href="/" class="logo">VYBE</a>
         <nav>
           <a href="#">크리에이터</a>
-          <a href="#">의뢰하기</a>
-          <a href="#">로그인</a>
+          <a href="#">성공사례</a>
+          <a href="#">문의하기</a>
         </nav>
+        <a href="#" class="cta">시작하기</a>
       </header>
     `;
   }
@@ -161,46 +123,47 @@ class VybeSection extends HTMLElement {
   }
   connectedCallback() {
     const title = this.getAttribute('title') || '';
-    this.render(title);
+    const subtitle = this.getAttribute('subtitle') || '';
+    this.render(title, subtitle);
+    this.classList.add('reveal');
     revealObserver.observe(this);
   }
-  render(title) {
+  render(title, subtitle) {
     this.shadowRoot.innerHTML = `
       <style>
-        :host {
-          display: block;
-          opacity: 0;
-          transform: translateY(40px);
-          transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        :host(.visible) {
-          opacity: 1;
-          transform: translateY(0);
-        }
         section {
-          padding: 80px 0;
+          padding: 100px 0;
         }
-        h3 {
-          font-size: 36px;
+        .header {
+          text-align: center;
+          margin-bottom: 64px;
+        }
+        h2 {
+          font-size: clamp(32px, 5vw, 56px);
           font-weight: 800;
-          margin-bottom: 48px;
-          color: white;
+          margin-bottom: 16px;
           letter-spacing: -0.04em;
+          color: white;
         }
-        @media (max-width: 768px) {
-          section { padding: 60px 0; }
-          h3 { font-size: 28px; }
+        p {
+          font-size: 18px;
+          color: #A1A1AA;
+          max-width: 600px;
+          margin: 0 auto;
         }
       </style>
       <section>
-        ${title ? `<h3>${title}</h3>` : ''}
+        <div class="header">
+          ${title ? `<h2>${title}</h2>` : ''}
+          ${subtitle ? `<p>${subtitle}</p>` : ''}
+        </div>
         <slot></slot>
       </section>
     `;
   }
 }
 
-// StyleCard Component
+// StyleCard Component (Bento Grid)
 class StyleCard extends HTMLElement {
   constructor() {
     super();
@@ -209,39 +172,53 @@ class StyleCard extends HTMLElement {
   connectedCallback() {
     const title = this.getAttribute('title') || 'Style';
     const desc = this.getAttribute('description') || 'Description';
+    const span = this.getAttribute('span') || '3';
+    this.style.gridColumn = `span ${span}`;
     this.render(title, desc);
-    attachGlowEffect(this);
   }
   render(title, desc) {
     this.shadowRoot.innerHTML = `
       <style>
         ${sharedStyles}
-        :host { opacity: 1; }
         .card {
-          padding: 48px 40px;
-          cursor: pointer;
+          padding: 40px;
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
-          min-height: 220px;
+          justify-content: space-between;
+          min-height: 200px;
         }
         h4 {
-          font-size: 26px;
-          margin: 0 0 14px 0;
+          font-size: 24px;
+          margin: 0 0 12px 0;
           color: white;
           font-weight: 800;
+          letter-spacing: -0.03em;
         }
         p {
-          font-size: 16px;
-          color: oklch(75% 0.02 285);
+          font-size: 15px;
+          color: #A1A1AA;
           margin: 0;
-          line-height: 1.4;
+          line-height: 1.5;
+        }
+        .badge {
+          display: inline-block;
+          padding: 4px 12px;
+          background: oklch(85% 0.2 145 / 0.1);
+          color: oklch(85% 0.2 145);
+          border-radius: 100px;
+          font-size: 12px;
+          font-weight: 700;
+          margin-bottom: 16px;
+          align-self: flex-start;
         }
       </style>
       <div class="glass card">
-        <h4>${title}</h4>
-        <p>${desc}</p>
+        <div>
+          <div class="badge">TRENDING</div>
+          <h4>${title}</h4>
+          <p>${desc}</p>
+        </div>
       </div>
     `;
   }
@@ -256,50 +233,40 @@ class CreatorCard extends HTMLElement {
   connectedCallback() {
     const name = this.getAttribute('name') || 'Creator';
     const tag = this.getAttribute('tag') || 'Tagline';
-    const img = this.getAttribute('image') || '';
-    this.render(name, tag, img);
-    attachGlowEffect(this);
+    this.render(name, tag);
   }
-  render(name, tag, img) {
+  render(name, tag) {
     this.shadowRoot.innerHTML = `
       <style>
         ${sharedStyles}
-        :host { opacity: 1; }
         .card {
           padding: 24px;
-          min-width: 300px;
-          cursor: pointer;
+          min-width: 280px;
+          flex: 0 0 auto;
         }
-        .image-container {
+        .img-placeholder {
           width: 100%;
           aspect-ratio: 1;
-          background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-          border-radius: 24px;
-          margin-bottom: 24px;
+          background: linear-gradient(135deg, #111, #000);
+          border-radius: 20px;
+          margin-bottom: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 48px;
-          position: relative;
-          overflow: hidden;
+          font-size: 40px;
         }
         h4 {
-          font-size: 22px;
-          margin: 0 0 10px 0;
+          font-size: 20px;
           color: white;
-          font-weight: 800;
+          margin-bottom: 4px;
         }
         p {
-          font-size: 15px;
-          color: oklch(75% 0.02 285);
-          margin: 0;
-          font-weight: 500;
+          color: #A1A1AA;
+          font-size: 14px;
         }
       </style>
       <div class="glass card">
-        <div class="image-container">
-          ${img ? `<img src="${img}" style="width:100%; height:100%; object-fit:cover;">` : '📸'}
-        </div>
+        <div class="img-placeholder">📸</div>
         <h4>${name}</h4>
         <p>${tag}</p>
       </div>
@@ -315,34 +282,29 @@ class VybeButton extends HTMLElement {
   }
   connectedCallback() {
     const text = this.getAttribute('text') || 'Button';
-    const variant = this.getAttribute('variant') || 'primary';
-    this.render(text, variant);
+    this.render(text);
   }
-  render(text, variant) {
+  render(text) {
     this.shadowRoot.innerHTML = `
       <style>
         button {
-          padding: 20px 48px;
+          padding: 18px 40px;
           border: none;
           border-radius: 100px;
           font-weight: 800;
           font-size: 18px;
           cursor: pointer;
-          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          background: ${variant === 'primary' ? 'linear-gradient(135deg, oklch(65% 0.3 300), oklch(70% 0.25 30))' : 'rgba(255, 255, 255, 0.05)'};
-          color: white;
-          box-shadow: ${variant === 'primary' ? '0 0 30px oklch(65% 0.3 300 / 0.4)' : 'none'};
-          position: relative;
-          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          background: oklch(85% 0.2 145);
+          color: black;
           letter-spacing: -0.02em;
         }
         button:hover {
-          transform: translateY(-6px) scale(1.03);
-          box-shadow: ${variant === 'primary' ? '0 20px 40px oklch(65% 0.3 300 / 0.5)' : 'rgba(255, 255, 255, 0.1)'};
-          filter: brightness(1.1);
+          transform: scale(1.05);
+          box-shadow: 0 0 30px oklch(85% 0.2 145 / 0.4);
         }
         button:active {
-          transform: translateY(0) scale(0.96);
+          transform: scale(0.95);
         }
       </style>
       <button>${text}</button>
@@ -357,4 +319,4 @@ customElements.define('style-card', StyleCard);
 customElements.define('creator-card', CreatorCard);
 customElements.define('vybe-button', VybeButton);
 
-console.log('VYBE Platform - Midnight Aurora Initialized');
+console.log('VYBE - High Performance Initialized');

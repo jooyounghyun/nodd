@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VYBE - Creator Platform</title>
+  <title>VYBE - High Performance Creator Platform</title>
 
   <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -17,54 +17,65 @@
   <div class="aurora-container">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
   </div>
 
   <vybe-header></vybe-header>
 
   <main class="container">
     
-    <section class="hero" style="text-align: center; padding: 160px 24px;">
-      <h2 style="font-size: clamp(40px, 10vw, 80px); line-height: 1.05; margin-bottom: 32px; font-weight: 800;">
-        트렌디한 콘텐츠를<br/>
-        <span class="gradient-text">가장 빠르게</span>
-      </h2>
-      <p style="color: var(--text-secondary); font-size: clamp(18px, 4vw, 22px); margin-bottom: 56px; font-weight: 500; max-width: 600px; margin-inline: auto;">
-        검증된 Z세대 크리에이터와 함께<br/>바이럴의 정점에 올라타세요.
-      </p>
-
-      <vybe-button text="의뢰 시작하기" onclick="alert('의뢰 기능 준비중')"></vybe-button>
+    <section class="hero" style="text-align: center; padding: 200px 24px 120px;">
+      <div class="reveal">
+        <h1 style="font-size: clamp(48px, 10vw, 92px); margin-bottom: 24px;">
+          트렌디한 콘텐츠,<br/>
+          <span class="gradient-text">압도적인 퍼포먼스</span>
+        </h1>
+        <p class="subtext" style="margin-inline: auto; margin-bottom: 48px;">
+          Cal AI급 고감도 디자인과 Z세대 감성을 결합한<br/>
+          국내 유일의 퍼포먼스 크리에이터 매칭 플랫폼.
+        </p>
+        <vybe-button text="지금 바로 시작하기"></vybe-button>
+      </div>
     </section>
 
-    <vybe-section title="스타일 선택">
-      <div id="style-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-        <style-card title="감성 브이로그" description="시네마틱한 무드와 감각적인 편집으로 브랜드의 감성을 전달합니다."></style-card>
-        <style-card title="밈 스타일" description="최신 트렌드와 유머를 결합하여 압도적인 전파력을 보장합니다."></style-card>
-        <style-card title="정보형 쇼츠" description="핵심 내용을 1분 안에 임팩트 있게 전달하는 정보성 콘텐츠입니다."></style-card>
-        <style-card title="광고형 영상" description="데이터 기반의 기획으로 실질적인 전환과 매출을 이끌어냅니다."></style-card>
+    <vybe-section title="What VYBE includes" subtitle="우리는 단순한 영상을 넘어 브랜드의 성장을 설계합니다.">
+      <div class="bento-grid">
+        <style-card span="8" title="감성 브이로그" description="시네마틱한 무드로 브랜드의 철학을 자연스럽게 녹여냅니다."></style-card>
+        <style-card span="4" title="밈 스타일" description="트렌드 최전선에서 압도적 전파력을 보장합니다."></style-card>
+        <style-card span="4" title="정보형 쇼츠" description="1분 안에 임팩트 있게 전달하는 정보성 콘텐츠."></style-card>
+        <style-card span="8" title="퍼포먼스 광고" description="데이터 기반 기획으로 실질적인 구매 전환을 이끌어냅니다."></style-card>
       </div>
     </vybe-section>
 
-    <vybe-section title="추천 크리에이터">
-      <div class="creator-list" style="display: flex; gap: 32px; overflow-x: auto; padding-bottom: 32px; scrollbar-width: none; -ms-overflow-style: none;">
-        <creator-card name="Creator A" tag="조회수 100만+ 영상 다수 보유"></creator-card>
-        <creator-card name="Creator B" tag="감성 기반 브랜딩 콘텐츠 전문"></creator-card>
-        <creator-card name="Creator C" tag="Z세대 타겟 밈 콘텐츠 전문가"></creator-card>
-        <creator-card name="Creator D" tag="퍼포먼스 마케팅 최적화 쇼츠"></creator-card>
+    <vybe-section title="Featured Creators" subtitle="최고의 성과를 낸 상위 1% 크리에이터를 만나보세요.">
+      <div class="creator-list" style="display: flex; gap: 24px; overflow-x: auto; padding: 20px 0 60px; scrollbar-width: none;">
+        <creator-card name="Creator A" tag="누적 조회수 500만+"></creator-card>
+        <creator-card name="Creator B" tag="패션/뷰티 카테고리 1위"></creator-card>
+        <creator-card name="Creator C" tag="Z세대 소통 전문가"></creator-card>
+        <creator-card name="Creator D" tag="전환 최적화 마케터"></creator-card>
       </div>
     </vybe-section>
 
   </main>
 
-  <footer style="padding: 100px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-secondary); font-size: 15px;">
-    <p style="margin-bottom: 12px;">© 2026 VYBE. All rights reserved.</p>
-    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 20px;">
-      <a href="#" style="color: inherit; text-decoration: none;">이용약관</a>
-      <a href="#" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
+  <footer style="padding: 100px 24px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+    <div class="container">
+      <h2 style="font-size: 32px; margin-bottom: 40px;">Ready to ride the VYBE?</h2>
+      <vybe-button text="문의 남기기"></vybe-button>
+      <div style="margin-top: 80px; color: var(--text-secondary); font-size: 14px;">
+        <p>© 2026 VYBE. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="main.js" type="module"></script>
+  <script>
+    // Simple script to trigger hero reveal immediately
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelector('.hero .reveal').classList.add('active');
+      }, 100);
+    });
+  </script>
 </body>
 </html>
